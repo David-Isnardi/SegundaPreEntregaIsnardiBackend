@@ -7,7 +7,7 @@ class ProductManager {
     constructor() {
         this.#products = [];
         this.#error = undefined;
-        this.#path = './src/productos.json';
+        this.#path = './src/products.json';
     }
 
     #generateId = () => (this.#products.length === 0) ? 1 : this.#products[this.#products.length - 1].id + 1

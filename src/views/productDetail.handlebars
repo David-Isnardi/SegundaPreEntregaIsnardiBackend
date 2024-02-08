@@ -21,7 +21,7 @@
                 <td>{{this.stock}}</td>
                 <td>{{this.category}}</td>
                 <td>
-                    <form action="/api/carts/:cartId{{this._id}}" method="POST">
+                    <form action="/api/carts/{{this._id}}" method="POST">
                         <button type="submit">Agregar al carrito</button>
                     </form>
                 </td>

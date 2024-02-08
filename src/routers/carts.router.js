@@ -4,8 +4,8 @@ import { productModel } from "../dao/GeneralModels/GeneralModels.js";
 
 const router = Router();
 
-// const filePathProducts = './src/productos.json';
-// const filePathCarts = './src/carrito.json';
+const filePathProducts = './src/products.json';
+const filePathCarts = './src/cart.json';
 
 router.get('/', async (req, res) => {
     try {

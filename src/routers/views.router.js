@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
   router.get('/:cid', async (req, res) => {
     try {
       const id = req.params.cid
-      const result = await ProductModel.findById(id).lean().exec();
+      const result = await productModel.findById(id).lean().exec();
       if (result === null) {
         return res.status(404).json({ status: 'error', error: 'Product not found' });
       }
@@ -49,7 +49,6 @@ router.get('/', async (req, res) => {
   })
 
   router.get('/carts/:cid', async (req, res) => {
-    // ID del carrito: 64a36d28ae5981f3f6e4488e
     try {
       const id = req.params.cid
       const result = await cartModel.findById(id).lean().exec();

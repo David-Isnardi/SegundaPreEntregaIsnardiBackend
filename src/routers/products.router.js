@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
 router.get('/:pid', async (req, res) => {
   const id = req.params.pid;
   try {
-    const product = await Product.findById(id).lean().exec();
+    const product = await productModel.findById(id).lean().exec();
     if (product) {
       res.status(200).json(product);
     } else {
@@ -58,8 +58,8 @@ router.get('/:pid', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const product = req.body
-    const result = await Product.create(product);
-    const products = await Product.find().lean().exec();
+    const result = await productModel.create(product);
+    const products = await productModel.find().lean().exec();
     req.io.emit('productList', products); // emite el evento updatedProducts con la lista de productos
     res.status(201).json({ status: 'success', payload: result });
   } catch (error) {
@@ -72,7 +72,7 @@ router.put('/:pid', async (req, res) => {
     const productId = req.params.pid;
     const updatedFields = req.body;
 
-    const updatedProduct = await Product.findByIdAndUpdate(productId, updatedFields, {
+    const updatedProduct = await productModel.findByIdAndUpdate(productId, updatedFields, {
       new: true // Para devolver el documento actualizado
     }).lean().exec();
 
@@ -81,7 +81,7 @@ router.put('/:pid', async (req, res) => {
       return;
     }
 
-    const products = await Product.find().lean().exec();
+    const products = await productModel.find().lean().exec();
 
     req.io.emit('productList', products);
 
@@ -96,14 +96,14 @@ router.delete('/:pid', async (req, res) => {
   try {
     const productId = req.params.pid;
 
-    const deletedProduct = await Product.findByIdAndDelete(productId).lean().exec();
+    const deletedProduct = await productModel.findByIdAndDelete(productId).lean().exec();
 
     if (!deletedProduct) {
       res.status(404).json({ error: 'Producto no encontrado' });
       return;
     }
 
-    const products = await Product.find().lean().exec();
+    const products = await productModel.find().lean().exec();
 
     req.io.emit('productList', products);
 
