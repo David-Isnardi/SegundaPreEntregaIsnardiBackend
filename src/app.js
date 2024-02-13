@@ -6,7 +6,7 @@ import cartsRouter from './routers/carts.router.js'
 import viewsRouter from './routers/views.router.js'
 import chatRouter from './routers/chat.router.js'
 import mongoose from 'mongoose'
-import { messageModel } from './dao/GeneralModels/GeneralModels.js'
+import messageModel from './dao/GeneralModels/message.model.js'
 import ConectarBD from "./dao/mongo/database.js"
 
 const PORT = 8080; // puerto en el que va a escuchar el servidor
